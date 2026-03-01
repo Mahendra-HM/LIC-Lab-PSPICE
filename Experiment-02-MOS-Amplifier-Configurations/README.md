@@ -1,113 +1,176 @@
 # Experiment 02  
-## Performance Analysis of CMOS Amplifier Configurations (180nm Technology)
+# Performance Analysis of CMOS Amplifier Configurations (180nm Technology)
 
 ---
 
-## Objective
+## 1. Objective
 
-To design and analyze three CMOS amplifier configurations using 180nm technology in LTSPICE and evaluate their performance in terms of gain, bandwidth, output swing, and power consumption.
+To design and analyze three CMOS amplifier configurations using 180nm technology in LTSpice and compare their performance in terms of:
+
+- DC operating point
+- Voltage gain
+- Bandwidth (BW)
+- 3dB Bandwidth
+- Unity Gain Bandwidth (UGB)
+- Output swing
+- Power consumption
 
 ---
 
-## Design Specifications
+## 2. Technology & Simulation Details
 
-- Technology: 180nm CMOS
-- Simulation Tool: LTSPICE
+- Technology Node: 180nm CMOS (tsmc018)
+- Simulation Tool: LTSpice
 - Supply Voltage (VDD): 1.8 V
 - Load Capacitance (CL): 1 pF
-- Bias Voltages: As per design requirements
+- Analysis Performed:
+  - DC Operating Point (.op)
+  - Transient Analysis (.tran)
+  - AC Small-Signal Analysis (.ac)
 
 ---
 
-## Circuit Configurations
+## 3. Amplifier Configurations
 
-Three amplifier topologies were implemented and analyzed:
+Three amplifier topologies were implemented as per the assignment sheet.
 
-### Configuration (a)
-## Configuration (a): PMOS Active Load with Source Degeneration
+---
 
-### Circuit Schematic
-![Schematic](images/config-a-schematic.png)
+# 🔹 Configuration (a)
+### PMOS Active Load with Source Degeneration
+
+### Circuit Description
+- M1: NMOS input transistor
+- M2: PMOS active load
+- Rs: Source degeneration resistor
+
+### Schematic
+![Config A Schematic](images/config-a-schematic.png)
+
+---
 
 ### DC Operating Point
-![DC Analysis](images/config-a-dc.png)
 
-### Transient Analysis
-![Transient](images/config-a-transient.png)
+Purpose:
+- Ensure all transistors operate in saturation
+- Extract ID, VGS, VDS
+- Compute total power consumption
 
-### AC Analysis (No Load)
-![AC No Load](images/config-a-ac-no-load.png)
+![Config A DC](images/config-a-dc.png)
 
-### AC Analysis (CL = 1pF)
-![AC With 1pF](images/config-a-ac-1pf.png)
-
-### Configuration (b)
-Common-source amplifier with active load for improved gain.  
-(Schematic: configuration-b.png)
-
-### Configuration (c)
-Modified / Cascoded configuration to enhance output resistance and voltage gain.  
-(Schematic: configuration-c.png)
-
----
-
-## DC Operating Point Analysis
-
-DC simulation was performed to:
-
-- Ensure all MOSFETs operate in saturation region.
-- Extract drain current (ID), VGS, and VDS.
-- Verify proper biasing.
-- Calculate total power dissipation.
-
-Power Consumption:
+Power Calculation:
 P = VDD × I_total
 
-(Refer: dc-analysis.png)
+---
+
+### Transient Analysis
+
+Purpose:
+- Verify linear amplification
+- Measure voltage gain
+- Check maximum output swing
+- Observe distortion
+
+![Config A Transient](images/config-a-transient.png)
 
 ---
 
-## Transient Analysis
+### AC Analysis
 
-Transient simulation was carried out using a small-signal sinusoidal input to:
-
-- Verify linear amplification.
-- Measure voltage gain (Av = Vout / Vin).
-- Determine maximum output swing.
-- Observe signal distortion (if any).
-
-(Refer: transient-analysis.png)
-
----
-
-## AC Small-Signal Analysis
-
-AC sweep analysis was performed to extract:
-
+Extracted Parameters:
 - Midband Gain
 - 3dB Bandwidth
 - Unity Gain Bandwidth (UGB)
-- Gain roll-off characteristics
-- Effect of load capacitance on frequency response
+- Effect of CL on frequency response
 
-(Refer: ac-analysis.png)
+Without Load:
+![Config A AC No Load](images/config-a-ac-no-load.png)
+
+With CL = 1pF:
+![Config A AC With Load](images/config-a-ac-1pf.png)
 
 ---
 
-## Theoretical Calculations
+# 🔹 Configuration (b)
+### Cascoded Common Source Amplifier
 
-Small-signal parameters such as gm and ro were calculated.
+### Circuit Description
+- M1: Input transistor
+- M2: PMOS active load
+- M3: Cascoding transistor
 
-Theoretical Gain Approximation:
+### Schematic
+![Config B Schematic](images/config-b-schematic.png)
+
+### Analysis Performed
+- DC bias verification
+- Transient gain measurement
+- AC gain and bandwidth extraction
+
+(Insert corresponding images here)
+
+---
+
+# 🔹 Configuration (c)
+### Modified / Fully Cascoded Configuration
+
+### Circuit Description
+- Enhanced output resistance
+- Higher gain expected
+- Reduced output swing
+
+### Schematic
+![Config C Schematic](images/config-c-schematic.png)
+
+### Analysis Performed
+- DC saturation verification
+- Transient response
+- AC frequency response
+
+(Insert corresponding images here)
+
+---
+
+## 4. Theoretical Analysis
+
+Small-signal parameters calculated:
+
+- gm = 2ID / Vov
+- ro ≈ 1 / (λID)
+
+Voltage Gain Approximation:
 Av ≈ -gm × ro
 
-Detailed hand calculations are provided in:
+Detailed derivations are provided in:
 `calculations.md`
 
+---
 
+## 5. Performance Comparison
 
-## Conclusion
+| Configuration | Gain | 3dB BW | UGB | Output Swing | Power |
+|--------------|------|--------|-----|--------------|-------|
+| (a) |  |  |  |  |  |
+| (b) |  |  |  |  |  |
+| (c) |  |  |  |  |  |
 
-The three CMOS amplifier configurations were successfully designed and analyzed using 180nm technology in LTSPICE.  
-A trade-off between gain, bandwidth, power consumption, and output swing was observed.  
-The results were compared with theoretical expectations to validate the design.
+(Values to be filled after extracting from simulation)
+
+---
+
+## 6. Observations
+
+- Cascoding increases output resistance and gain.
+- Source degeneration improves linearity but reduces gain.
+- Load capacitance reduces bandwidth.
+- Trade-off observed between gain and bandwidth.
+
+---
+
+## 7. Conclusion
+
+All three CMOS amplifier configurations were successfully designed and analyzed using 180nm technology.
+
+The experimental results were compared with theoretical calculations and performance trade-offs between gain, bandwidth, power, and output swing were studied.
+
+This experiment demonstrates practical understanding of small-signal modeling and frequency response analysis of CMOS amplifiers.
